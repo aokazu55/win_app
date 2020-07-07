@@ -1,0 +1,39 @@
+<!-- <p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+ -->
+
+<p>Welcome! 【　<%= @resource.name %>さん！　】</p>
+win_app!をご利用いただきありがとうございます。
+<br>
+</p>
+<% if @resource.try(:unconfirmed_email?) %>
+<p>以下のURLをクリックして、メールアドレス変更手続きを完了してください。
+<br>
+<%= link_to "#{@resource.unconfirmed_email}", confirmation_url(@resource, confirmation_token: @token) %>
+<br>
+<br>
+このURLの有効期限は24時間です。
+</p>
+<% end %>
+<br>
+<p>◆　お知らせ内容</p>
+<p>会員登録が完了しました。</p>
+<br>
+<p>
+◆　Webページを開く場合は以下リンクをクリック
+</p>
+<p>http://localhost:3000</p>
+<br>
+<br>
+◆　ご登録の覚えがない方
+<br>
+<p>ご迷惑をおかけし申し訳ありません。</p>
+<p>大変お手数ですが下記メールアドレスまでご連絡をお願いいたします。</p>
+<br>
+******@****.jp
+<br>
+<br>
+※このメールは返信しても届きません。お問い合わせはアプリを起動して「お問い合わせ」からお願いいたします。
