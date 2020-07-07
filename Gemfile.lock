@@ -217,6 +217,10 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     parallel (1.19.2)
+    paranoia (2.4.2)
+      activerecord (>= 4.0, < 6.1)
+    paranoia_uniqueness_validator (3.2.0)
+      activerecord (>= 5.1.0, < 6.1)
     parser (2.7.1.4)
       ast (~> 2.4.1)
     pg (1.2.3)
@@ -442,6 +446,8 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
+  paranoia
+  paranoia_uniqueness_validator
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)
