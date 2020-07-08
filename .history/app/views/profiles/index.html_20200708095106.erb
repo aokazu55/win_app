@@ -1,0 +1,41 @@
+<section class="hero is-success">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				プロフィール一覧
+			</h1>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-multiline">
+			<% @profiles.each do |profile| %>
+			<div class="column is-4">
+				<div class="card">
+					<div class="card-image">
+						<figure class="image is-4by3">
+							<%= link_to profile_path(profile) do %>
+							<%= attachment_image_tag profile, :image %>
+							<% end %>
+						</figure>
+					</div>
+					<div class="card-content">
+						<div class="media">
+
+							<div class="media-content">
+								<div class="title"><%=link_to profile.user.name, user_path(profile.user) %></div>
+							</div>
+						</div>
+
+						<div class="content">
+							<time><%= profile.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</section>
