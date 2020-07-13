@@ -1,0 +1,14 @@
+<div class="comment-form">
+	<%= form_with(model: [@service, @comment]) do |f| %>
+	<div class="input-field">
+		<%= f.text_area :content, class: "materialize-textarea" %>
+		<%= f.label :content, "コメント内容", class: "active" %>
+		<span class="helper-text" data-error="wrong" data-success="right">1から140文字以内</span>
+	</div>
+	<div class="comment-button">
+		<%= button_tag :type => "submit", :class =>"waves-effect waves-light btn" do %>
+		<%= t('.comment') %>
+		<% end %>
+	</div>
+	<% end %>
+</div>

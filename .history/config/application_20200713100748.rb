@@ -25,4 +25,5 @@ module WinApp
       g.test_framework false
     end
   end
+  end
 end

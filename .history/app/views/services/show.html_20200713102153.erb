@@ -67,9 +67,9 @@
 	</div>
 </section>
 <section>
-
+<!-- <%= render 'services/comment' %> -->
 <div id="comments_area">
-	<%= render partial: 'comments/index', locals: { comments: @comments, service: @service } %>
+	<%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
 </div>
-	<%= render partial: 'comments/form', locals: { comment: @comment, service: @service } %>
+<%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
 </section>
