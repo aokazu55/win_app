@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'users#index'
   devise_for :users, controllers: {
@@ -7,10 +8,7 @@ Rails.application.routes.draw do
   }
 
   resources :users
-  resources :services do
-    resources :comments, only: [:create, :destroy, :edit, :update]
-  end
-  
+  resources :services
   resources :profiles
   put "/users/:id/destroy" => "users#destroy", as: 'users_destroy'
 end

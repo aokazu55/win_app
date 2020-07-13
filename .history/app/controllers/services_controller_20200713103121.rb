@@ -4,11 +4,11 @@ class ServicesController < ApplicationController
 
     def show
       @comments = @service.comments
-      @comment = @service.comments.build
+      @comment = @service.comment
     end
 
     def index
-      @services = Service.all.order(created_at: :desc)
+      @services = Service.all
     end
 
     def new
@@ -39,8 +39,8 @@ class ServicesController < ApplicationController
     end
 
     def destroy
-      @service = Service.find(params[:id])
-      @service.destroy
+      service = Service.find(params[:id])
+      service.destroy
       redirect_to user_path(service.user), notice: "サービスを削除しました。"
     end
 
