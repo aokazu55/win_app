@@ -1,0 +1,4 @@
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.service.comments, service: @comment.service }) %>")
+$("textarea").val('')
+$('#error_explanation').remove();
+<% will_paginate @comments %>

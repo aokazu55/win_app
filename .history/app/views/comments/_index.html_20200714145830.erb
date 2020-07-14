@@ -1,0 +1,46 @@
+<article class="media">
+	<div class="flash-message">
+		<%= render 'layouts/flash' %>
+</article>
+
+<h2 class="title title-comment is-4">
+	<i class="icon ion-ios-chatbubbles"></i>
+	サービスへのコメント
+</h2>
+
+<% comments.order(created_at: :desc).each do |comment| %>
+<div id="comment_<%= comment.id %>">
+	<% if comment.id.present? %>
+<article class="media">
+	<figure class="media-left">
+		<p class="image is-64x64">
+			<%= "ユーザーイメージ画像" %>
+		</p>
+	</figure>
+	<div class="media-content">
+		<div class="content">
+			<p>
+				<strong>ユーザーネーム</strong>
+			</p>
+			<div id="errors_area_<%= comment.id %>">
+				<%= render partial: 'comments/edit_error' %>
+			</div>
+			<div class="comment-content" id="this_comment_<%= comment.id %>">
+				<%= simple_format(comment.content) %>
+			</div>
+			<span>投稿日時：<%= time_ago_in_words(comment.created_at) %>前</span>
+			<span class="badge"><%= link_to "", edit_service_comment_path(service, comment), remote: true %><i class="fas fa-edit"></i></span>
+			<span class="badge"><%= link_to "", service_comment_path(comment.service_id, comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"} %><i class="fas fa-trash-alt"></i></span>
+			<nav class="level">
+				<div class="level-left">
+					<a class="level-item reply is-size-7">
+						<span class="icon is-small"><i class="fas fa-undo-alt"></i></span>返信をする
+					</a>
+				</div>
+			</nav>
+		</div>
+	<% end %>
+</article>
+</div>
+<% end %>
+
