@@ -1,0 +1,37 @@
+<article class="media">
+	<%= form_with(model: [service, comment]) do |f| %>
+	<!-- <figure class="media-left">
+		<p class="image is-64x64">
+			<img class="is-rounded" src="assets/images/no-image.png">
+		</p>
+	</figure> -->
+	<div class="media-content">
+		<div class="field">
+			<p class="control">
+				<textarea class="textarea" placeholder="ここにメッセージ内容を入力">
+				<%= f.text_area :content, class: "textarea" %>
+				<!-- <%= f.label :content, "コメント内容", class: "active" %> -->
+				</textarea>
+				<span class="helper-text" data-error="wrong" data-success="right">※ 1から140文字以内でご入力下さい。</span>
+			</p>
+		</div>
+		<nav class="level">
+			<div class="level-left">
+				<div class="level-item">
+						<div class="comment-button">
+							<%= f.submit '登録', class: "button is-success" do %> 
+							<% end %>
+						</div>
+				</div>
+			</div>
+			<div class="level-right">
+				<div class="level-item">
+					<label class="checkbox">
+						<input type="checkbox"> Enterで送信
+					</label>
+				</div>
+			</div>
+		</nav>
+		<% end %>
+	</div>
+</article>

@@ -1,0 +1,43 @@
+<article class="media">
+	<%= form_with(model: [service, comment]) do |f| %>
+	<div class="input-field">
+
+	</div>
+	<div class="comment-button">
+		<%= button_tag :type => "submit", :class =>"waves-effect waves-light btn" do %>
+		<%= t('.comment') %>
+		<% end %>
+	</div>
+	<% end %>
+	<figure class="media-left">
+		<p class="image is-64x64">
+			<img class="is-rounded" src="assets/images/gox64.png">
+		</p>
+	</figure>
+	<div class="media-content">
+		<div class="field">
+			<p class="control">
+				<textarea class="textarea">
+				<%= f.text_area :content, class: "textarea" placeholder="ここにメッセージ内容を入力" %>
+				<%= f.label :content, "コメント内容", class: "active" %>
+				</textarea>
+				<span class="helper-text" data-error="wrong" data-success="right">1から140文字以内</span>
+			</p>
+		</div>
+		<nav class="level">
+			<div class="level-left">
+				<div class="level-item">
+					<a class="button is-info">送信</a>
+				</div>
+			</div>
+			<div class="level-right">
+				<div class="level-item">
+					<label class="checkbox">
+						<input type="checkbox"> Enterで送信
+					</label>
+				</div>
+			</div>
+		</nav>
+	</div>
+</article>
+
