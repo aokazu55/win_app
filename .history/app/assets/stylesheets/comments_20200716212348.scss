@@ -1,0 +1,97 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.media {
+	margin: 0 50px;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#comment_content {
+	width: 100%;
+}
+
+#comments {
+	margin: 3px 5px;
+	height: 40px;
+	font-size: 0.8em;
+}
+
+#comment-remark {
+	text-align: right;
+	font-size: 0.8em;
+	margin-right: 2.5em;
+}
+
+.comment-attention {
+	margin: 5px 10px;
+	padding: 5px;
+	height: 48px;
+	background-color: lighten($color: #fbffc5, $amount: 0);
+	font-weight: bold;
+	font-size: 0.8em;
+	word-wrap: break-word;
+	line-height: center;
+}
+
+.comment-attention p {
+	line-height: center;
+	margin: 0 5px;
+}
+
+
+// ーーーーーーーーーー『もっと見る』ーーーーーーーーーー
+
+.continue-comment-btn {
+  content: "続きを読む";
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #03A9F4;/*色*/
+  border: solid 1px #0f9ada;/*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.continue-comment-btn:active {
+  /*押したとき*/
+  border: solid 1px #03A9F4;
+  box-shadow: none;
+  text-shadow: none;
+}
+.continue-item {
+  position: relative;
+  overflow: hidden;
+  height: 80px; /*隠した状態の高さ*/
+}
+
+.continue-item::before {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /*グラデーションで隠す高さ*/
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+  background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+  content: "";
+}
+.comment-trigger {
+  display: none; /*チェックボックスは常に非表示*/
+}
+.comment-trigger:checked ~ .continue-comment-btn::before {
+  content: "閉じる" /*チェックされていたら、文言を変更する*/
+}
+.comment-trigger:checked ~ .continue-item {
+  height: auto; /*チェックされていたら、高さを戻す*/
+}
+.comment-trigger:checked ~ .continue-item::before {
+  display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
+}
+
+

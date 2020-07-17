@@ -1,0 +1,5 @@
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.service.comments }) %>")
+$("#view_more").replaceWith("<%= escape_javascript( 
+link_to_next_page(@comments, 'もっと見る', remote: true, id: 'view_more')) %>");
+$("textarea").val('')
+$('#error_explanation').remove();

@@ -1,0 +1,31 @@
+<article class="media">
+	<%= form_with(model: [service, comment], url: service_comments_path(@service) ) do |f| %>
+	<div class="media-content">
+		<div class="field ">
+			<p class="comment-attention word-break">相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。</p>
+		</div>
+		<div class="field">
+			<p class="control">
+				<%= f.text_area :content, placeholder: "ここに1〜120文字までで入力下さい", class: "textarea" %>
+			</p>
+		</div>
+		<nav class="level">
+			<div class="level-left">
+				<div class="level-item">
+						<div class="comment-button">
+							<%= f.submit 'コメントする', class: "button is-info" do %> 
+							<% end %>
+						</div>
+				</div>
+			</div>
+			<!-- <div class="level-right">
+				<div class="level-item">
+					<label class="checkbox">
+						<input type="checkbox"> Enterで送信
+					</label>
+				</div>
+			</div> -->
+		</nav>
+		<% end %>
+	</div>
+</article>

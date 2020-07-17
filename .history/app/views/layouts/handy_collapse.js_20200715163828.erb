@@ -1,0 +1,37 @@
+<script src="js/handy-collapse.js"></script>
+<script>
+	document.addEventListener(
+		"DOMContentLoaded",
+		() => {
+			//Basic Accordion
+			const basic = new HandyCollapse();
+			//Nested
+			const nested = new HandyCollapse({
+				nameSpace: "nested",
+				closeOthers: false
+			});
+			//Callback
+			const callback = new HandyCollapse({
+				nameSpace: "callback",
+				closeOthers: false,
+				onSlideStart: (isOpen, contentID) => {
+					console.log(isOpen);
+					const buttonEl = document.querySelector(`[data-callback-control='${contentID}']`);
+					if (!buttonEl) return;
+					if (isOpen) {
+						buttonEl.textContent = "Opened " + contentID;
+					} else {
+						buttonEl.textContent = "Closed " + contentID;
+					}
+				}
+			});
+			//Callback
+			const tab = new HandyCollapse({
+				nameSpace: "tab",
+				closeOthers: true,
+				isAnimation: false
+			});
+		},
+		false
+	);
+</script>
