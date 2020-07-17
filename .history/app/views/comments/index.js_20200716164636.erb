@@ -1,0 +1,12 @@
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.service.comments }) %>")
+$("textarea").val('')
+
+var moreNum = 3;
+$('#comments_area:nth-child(n + ' + (moreNum + 3) + ')').addClass('is-hidden');
+$('.more').on('click', function () {
+$('#comments_area').slice(0, moreNum).removeClass('is-hidden');
+if ($('#comments_area').length == 0) {
+$('.more').fadeOut();
+}
+});
+

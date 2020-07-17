@@ -1,0 +1,28 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.media {
+	margin: 0 50px;
+}
+
+#comment_content {
+	width: 800px;
+}
+
+.comments {
+	margin: 3px 5px;
+	height: 40px;
+	font-size: 12px;
+}
+
+.comment-remark {
+	text-align: right;
+}
+
+.comment-attention {
+	margin: 5px 20px;
+	height: 40px;
+	background-color: lighten($color: #f7fcae, $amount: 0);
+	vertical-align: middle;
+}

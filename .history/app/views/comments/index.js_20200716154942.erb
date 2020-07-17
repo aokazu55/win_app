@@ -1,0 +1,5 @@
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.service.comments }) %>")
+$("textarea").val('')
+$('#more-comment').remove();
+$('#comment-list').append("<%= j render partial: 'comments/index', collection: @comments %>")
+$('#comment-list').append("<%= j link_to_next_page(@comments, 'もっと見る', id: 'more-comment', class: 'btn btn-light w-100', params: { type: :index }, remote: true) %>")

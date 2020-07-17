@@ -1,0 +1,83 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.media {
+	margin: 0 50px;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#comment_content {
+	width: 100%;
+}
+
+#comments {
+	margin: 3px 5px;
+	height: 40px;
+	font-size: 0.8em;
+}
+
+#comment-remark {
+	text-align: right;
+	font-size: 0.8em;
+}
+
+.comment-attention {
+	margin: 5px 10px;
+	padding: 5px;
+	height: 48px;
+	background-color: lighten($color: #fbffc5, $amount: 0);
+	font-weight: bold;
+	font-size: 0.8em;
+	word-wrap: break-word;
+	line-height: center;
+}
+
+.comment-attention p {
+	line-height: center;
+	margin: 0 5px;
+}
+
+
+// ーーーーーーーーーー『もっと見る』ーーーーーーーーーー
+.list {
+    width: 200px;
+    margin: auto;
+    padding: 0;
+}
+.list li {
+    opacity: 1;
+    list-style: none;
+    background-color: #ddd;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 4px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    transition: all 0.4s ease 0s;
+}
+.list li.is-hidden {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+}
+
+.more {
+    text-align: center;
+    margin-top: 20px;
+}
+button {
+    background-color: #bbdeff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    height: 32px;
+    line-height: 32px;
+    width: 120px;
+    border-radius: 16px;
+}
+

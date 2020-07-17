@@ -1,0 +1,4 @@
+<!-- $("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.service.comments, service: @comment.service }) %>") -->
+$("#comments_area").prepend("<%= j(render 'comments/index', { comment: @comment }) %>");
+$("textarea").val('')
+$('#error_explanation').remove();

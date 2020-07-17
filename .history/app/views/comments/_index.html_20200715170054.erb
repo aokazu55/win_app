@@ -1,0 +1,73 @@
+<article class="media">
+	<div class="flash-message">
+		<%= render 'layouts/flash' %>
+</article>
+
+<h2 class="title title-comment is-4">
+	<i class="icon ion-ios-chatbubbles"></i>
+	サービスへのコメント
+</h2>
+<%= comments.count %>件のコメント
+<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+	aria-controls="collapseExample">もっと見る....</h6>
+
+<% comments.order(created_at: :desc).first(3).each do |comment| %>
+	<% unless comment.id.nil? %>
+		<div id="comment_<%= comment.id %>">
+			<article class="media">
+				<figure class="media-left">
+					<p class="image is-64x64">
+						<%= attachment_image_tag @comment.user, :image, fallback: "no-image.png", class:"comment-image", size: "40x40"  %>
+					</p>
+				</figure>
+				<div class="media-content">
+					<div class="content">
+						<div id="errors_area_<%= comment.id %>">
+							<%= render partial: 'comments/edit_error' %>
+						</div>
+						<p><strong><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %>さんからのコメント</strong></p>
+						<span><i class="far fa-clock"></i>：<%= comment.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
+						<% if comment.user == current_user %>
+						<span class="badge"><%= link_to "", service_comment_path(comment.service_id, comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"}, class: "fas fa-trash-alt" %></span>
+						<% end %>
+						<div class="comment-content" id="this_comment_<%= comment.id %>">
+							<%= simple_format(comment.content) %>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>	
+	<% end %>
+<% end %>
+
+<div class="collapse" id="collapseExample">
+	<% comments.order(created_at: :desc).offset(3).each do |comment| %>
+	<div id="comment_<%= comment.id %>">
+		<% if comment.id.present? %>
+		<article class="media">
+			<figure class="media-left">
+				<p class="image is-64x64">
+					<%= attachment_image_tag @comment.user, :image, fallback: "no-image.png", class:"comment-image", size: "40x40"  %>
+				</p>
+			</figure>
+			<div class="media-content">
+				<div class="content">
+					<div id="errors_area_<%= comment.id %>">
+						<%= render partial: 'comments/edit_error' %>
+					</div>
+					<p><strong><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %>さんからのコメント</strong></p>
+					<span><i class="far fa-clock"></i>：<%= comment.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
+					<% if comment.user == current_user %>
+					<span
+						class="badge"><%= link_to "", service_comment_path(comment.service_id, comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"}, class: "fas fa-trash-alt" %></span>
+					<% end %>
+					<div class="comment-content" id="this_comment_<%= comment.id %>">
+						<%= simple_format(comment.content) %>
+					</div>
+				</div>
+			</div>
+		</article>
+		<% end %>
+	</div>
+	<% end %>
+</div>
