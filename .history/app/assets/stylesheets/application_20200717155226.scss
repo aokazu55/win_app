@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bulma";
+
+.notification:not(:last-child){
+	margin-bottom: 0;
+}
+
+// .profile_image {
+// 	border-radius: 50%;
+// }
+
+.main-image {
+	height: 940px;
+	background-image: url(meal.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.button {
+	margin: 5px;
+}
+
+.is-64x64 {
+	padding-top: 20px;
+	vertical-align: middle;
+}
+
+/*----------------------------
+* メニュー開閉ボタン
+*----------------------------*/
+.menu-btn{
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(212, 66, 66);
+  color: #fff;
+}
+
+/*----------------------------
+* メニュー本体
+*----------------------------*/
+.menu{
+  position: fixed;
+  top: 80;
+  right: 0;
+  z-index: 1;
+  width: 20vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(212, 66, 66);
+}
+.menu__item{
+  width: 100%;
+  height: auto;
+  padding: .5em 1em;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/*----------------------------
+* アニメーション部分
+*----------------------------*/
+
+/* アニメーション前のメニューの状態 */
+.menu{
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(.5);
+  transition: all .3s ease;
+}
+/* アニメーション後のメニューの状態 */
+.menu.is-active{
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1.0);
+}
