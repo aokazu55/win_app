@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Win_app_Demo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/c135f5a922.js" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <% if flash[:notice] %>
+  <div class="notification is-info">
+    <p class="notice"><%= notice %></p>
+  </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+  <div class="notification is-danger">
+    <p class="alert"><%= alert %></p>
+  </div>
+  <% end %>
+
+  <nav class="navbar is-warning">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-4" style="font-family: cursive;">win_app</h1>
+      <% end %>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+
+
+
+  <header id="global-head">
+    <%= link_to root_path, class: "navbar-item" do %>
+    <h1 id="brand-logo" style="font-family: cursive;">win_app</h1>
+    <% end %>
+  </header>
+   
+  <div id="nav-toggle">
+        <div>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+  </div>
+
+  <% if user_signed_in? %>
+  <aside id="sidebar">
+        <nav id="global-nav">
+              <ul>
+                    <li><%= link_to "サービス一覧", services_path %></li>
+                    <li><%= link_to "提供者一覧", users_path %></li>
+                    <li><%= link_to "ログイン", new_user_session_path %></li>
+                    <li><%= link_to "新規登録", new_user_registration_path %></li>
+
+                </ul>
+          </nav>
+  </aside>
+
+  <% else %>
+    <aside id="sidebar">
+          <nav id="global-nav">
+                <ul>
+                      <li><%= link_to link_to "提供者一覧", users_path %></li>
+                      <li><%= link_to "サービス投稿", new_service_path %></li>
+          <li><%= link_to "プロフィール登録", new_profile_path %></li>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        </ul>
+            </nav>
+    </aside>
+   
+  <main id="main">
+        <div id="main-in">
+              <div id="main-visual">
+                    <h2>Fixed Sidebar</h2>
+                </div>
+          </div><!-- /#main-in -->
+  </main>
+   
+  <div id="overlay"></div>
+
+
+    <% if user_signed_in? %>
+    <div class="navbar-item">
+      
+    </div>
+    <div class="navbar-item">
+      <%= link_to "サービス投稿", new_service_path, class: "navbar-item button is-warning is-light", style: "width: 10em;" %>
+    </div>
+                <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <% if current_user.profile.blank? %>
+      <div class="navbar-item">
+          <%= link_to "プロフィール登録", new_profile_path, class: "navbar-item button is-warning is-light" %>
+      </div>
+      <% end %>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to "提供者一覧", users_path, class: " button is-warning is-light" %>
+            </p>
+            <p class="control">
+              <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
+            </p>
+            <p class="control">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% else %>
+    <div class="navbar-item">
+      <%= link_to "サービス一覧", services_path, class: "button is-warning is-light" %>
+      <%= link_to "提供者一覧", users_path, class: "button is-warning is-light" %>
+    </div>
+                <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
+            </p>
+            <p class="control">
+              <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </nav>
+
+  <%= yield %>
+  
+  <%= render 'layouts/footer'%>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    (function ($) {
+      $(function () {
+        $('.sub-menu').on({
+          'mouseenter': function () {
+            $(this).addClass('is-active');
+          },
+          'mouseleave': function () {
+            $(this).removeClass('is-active');
+          }
+        });
+        $('#nav-toggle,#overlay').on('click', function () {
+          $('body').toggleClass('open');
+        });
+      });
+    })(jQuery);
+  </script>
+
+  <!-- <script type="text/javascript">
+    document.querySelector('.navbar-burger').addEventListener("click", toggleNav);
+
+    function toggleNav() {
+      var nav = document.querySelector('.navbar-menu');
+      if (nav.className == "navbar-menu") {
+        nav.className = "navbar-menu is-active";
+      } else {
+        nav.className = "navbar-menu";
+      }
+    }
+  </script> -->
+</body>
+
+</html>
