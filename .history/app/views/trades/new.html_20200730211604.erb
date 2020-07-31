@@ -1,0 +1,82 @@
+<section class="hero is-success">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				　購入確認画面
+			</h1>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-7">
+				<div class="card">
+					<div class="card-image">
+						<figure class="image is-4by3">
+							<%= attachment_image_tag @service, :image, fallback: "no-image.png", class: "image"  %>
+						</figure>
+					</div>
+					<div class="card-content">
+						<div class="media">
+							<div class="media-content">
+								<p class="title is-4"><%= @service.service_name %></p>
+							</div>
+						</div>
+						<div class="content">
+							<table class="table is-narrow">
+								<tr>
+									<th>サービス</th>
+								</tr>
+								<tr>
+									<td><%= simple_format @service.remark %></td>
+								</tr>
+							</table>
+							<% if @service.user_id == current_user.id %>
+							<div class="media">
+								<%= link_to "購入する", edit_service_path(@service), class: "button is-success" %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column is-4">
+				<article class="panel is-link">
+					<p class="panel-heading">
+						By <%= @service.user.name %>
+					</p>
+					<div class="panel-block">
+						<p class="control">
+							<%= @service.user.email %>
+						</p>
+					</div>
+					<%= link_to user_path(@service.user), class: "panel-block" do %>
+					<span class="panel-icon">
+						<i class="fas fa-user" aria-hidden="true"></i>
+					</span>
+					<%= @service.user.name %> さんのページへ
+					<% end %>
+				</article>
+			</div>
+		</div>
+	</div>
+</section>
+
+<article class="box media">
+	<div class="media-content">
+		<div class="content">
+			<div id="comments_area">
+				<%= render partial: 'comments/index', locals: { comments: @comments } %>
+			</div>
+		</div>
+		<% if user_signed_in? %>
+		<div class="media-content">
+			<div class="content">
+				<%= render partial: 'comments/form', locals: { comment: @comment, service: @service } %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</article>

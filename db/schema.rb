@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_111004) do
+ActiveRecord::Schema.define(version: 2020_07_31_060443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2020_07_14_111004) do
     t.bigint "user_id"
     t.index ["service_id"], name: "index_comments_on_service_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -59,6 +66,26 @@ ActiveRecord::Schema.define(version: 2020_07_14_111004) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "trades", force: :cascade do |t|
+    t.text "message"
+    t.integer "user_id"
+    t.integer "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_trades_on_service_id"
+    t.index ["user_id", "service_id"], name: "index_trades_on_user_id_and_service_id", unique: true
+    t.index ["user_id"], name: "index_trades_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_transactions_on_service_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,6 +118,9 @@ ActiveRecord::Schema.define(version: 2020_07_14_111004) do
 
   add_foreign_key "comments", "services"
   add_foreign_key "comments", "users"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "services", "users"
+  add_foreign_key "transactions", "services"
+  add_foreign_key "transactions", "users"
 end

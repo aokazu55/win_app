@@ -223,6 +223,8 @@ GEM
       activerecord (>= 5.1.0, < 6.1)
     parser (2.7.1.4)
       ast (~> 2.4.1)
+    payjp (0.0.7)
+      rest-client (~> 2.0)
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
@@ -448,6 +450,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   paranoia
   paranoia_uniqueness_validator
+  payjp
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)

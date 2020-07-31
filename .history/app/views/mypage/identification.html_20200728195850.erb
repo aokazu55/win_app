@@ -1,0 +1,79 @@
+<div class="mypage-main-container">
+	<%= render 'sell/header' %>
+	<% breadcrumb :mypage_identification %>
+	<%= render 'mypage/bread-crumbs' %>
+	<main class="mypage-container clearfix">
+		<%= render 'mypage/side-bar' %>
+		<div class="indentification-content">
+			<section class="indentification-content__mypage">
+				<h2 class="indentification-content__head">本人情報の登録</h2>
+				<%= form_with model: @user, local: true, class: 'indentification-content__form' do |f| %>
+				<div>
+					<p class="indentification-content__info">
+						お客様の本人情報を登録してください。
+						<br />
+						登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+					</p>
+					<p class="indentification-content__textlink">
+						<%= link_to '本人確認書類のアップロードについて', '' %>
+						<i class="fas fa-chevron-right"></i>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label 'お名前' %>
+					<p>
+						<%= current_user.full_name %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label 'お名前カナ' %>
+					<p>
+						<%= current_user.full_name_kana %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '生年月日', class: 'indentification-content__birthday' %>
+					<p>
+						<%= current_user.birthday %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '郵便番号', class: 'indentification-content__zipcode' %>
+					<span class="indentification-content__arbitrary">任意</span>
+					<%= f.text_field :zip_code1, { class: 'indentification-content__default', placeholder: '例）1234567', value: "#{ current_user.zip_code1 }" } %>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '都道府県', class: 'indentification-content__prefecture' %>
+					<span class="indentification-content__arbitrary">任意</span>
+					<div class="indentification-content__select">
+						<i class="fas fa-chevron-down"></i>
+						<%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '--', selected: current_user.prefecture_id %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '市区町村', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">""</span>
+						<%= f.text_field :city, { class: 'indentification-content__default', placeholder: '例）横浜市緑区', value: "#{ current_user.city }" } %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '番地', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">任意</span>
+						<%= f.text_field :address1, { class: 'indentification-content__default', placeholder: '例）青山1-1-1', value: "#{ current_user.address1 }" } %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '建物名', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">任意</span>
+						<%= f.text_field :address2, { class: 'indentification-content__default', placeholder: '例）柳ビル103', value: "#{ current_user.address2 }" } %>
+						<%= f.submit '登録する', { class: 'indentification-content__button' } %>
+					</div>
+					<p class="indentification-content__textlink" id="textinfo">
+						<%= link_to '本人情報の登録について', '' %>
+						<i class="fas fa-chevron-right"></i>
+					</p>
+				</div>
+				<% end %>
+			</section>
+		</div>
+		<%= render 'sell/sellbutton' %>
+	</main>
+	<%= render 'sell/footer' %>
+</div>

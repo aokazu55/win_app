@@ -1,0 +1,24 @@
+<div class="main__content">
+	<section class="chapter__container">
+		<h2 class="chapter__head">支払い方法</h2>
+		<div class="payment__main">
+			<div class="payment__list">
+				<div class="payment__list__content">
+					<h3 class="sub__head">クレジットカード一覧</h3>
+				</div>
+			</div>
+			<div class="add__card">
+				<div class="payment__list__content">
+					<%= link_to edit_credit_card_path(current_user), class: "red__btn", data: {"turbolinks" => false} do %>
+					<i></i>
+					<%= icon('fas', 'credit-card', class: "card__icon") %>
+					クレジットカードを追加する
+					<% end %>
+				</div>
+			</div>
+			<div class="not__regist">
+				<span>支払い方法について</span>
+			</div>
+		</div>
+	</section>
+</div>

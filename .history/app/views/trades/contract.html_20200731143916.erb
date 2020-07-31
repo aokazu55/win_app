@@ -1,0 +1,46 @@
+<section class="hero is-success">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				　購入確認画面
+			</h1>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-7">
+				<div class="card">
+					<div class="card-image">
+
+					</div>
+					<div class="card-content">
+						<div class="media">
+							<div class="media-content">
+								<p class="title is-4"><%= @trade.service.service_name %></p>
+							</div>
+						</div>
+						<div class="content">
+							<table class="table is-narrow">
+								<tr>
+									<th>サービス</th>
+								</tr>
+								<tr>
+									<td><%= simple_format @trade.service.remark %></td>
+								</tr>
+							</table>
+							<% if @trade.user_id == current_user.id %>
+							<div class="media">
+								<%= link_to "購入する", '#', class: "button is-success" %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

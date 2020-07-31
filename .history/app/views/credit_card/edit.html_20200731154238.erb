@@ -1,0 +1,73 @@
+<div class="main__content">
+	<section class="chapter__container">
+		<h2 class="chapter__head">クレジットカード情報入力</h2>
+		<%= form_tag('/credit_card', method: :post, action: "create", id: 'charge-form',  name: "inputForm", class: "chapter__container__inner") do %>
+		<div class="form__main__container">
+			<div class="form__content">
+				<label class="payment__card">カード番号</label>
+				<span class="require__form">必須</span>
+				<%= text_field_tag "number", "", class: "number input__deafult", placeholder: "" ,maxlength: "16", type: "text", id: "card_number" %>
+				<div class="card__list">
+					<div class="card__list__picture"></div>
+				</div>
+			</div>
+			<div class="form__content top__margin">
+				<label class="payment__card">有効期限</label>
+				<span class="require__form">必須</span>
+				<div class="select__box top__margin">
+					<div class="select__box__half">
+						<select class="select__default" id="exp_month" name="exp_month" type="text">
+							<option>--</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<i class="fas fa-chevron-down"></i>
+						<span>月</span>
+					</div>
+					<div class="select__box__half">
+						<div class="icon"></div>
+						<select class="select__default" id="exp_year" name="exp_year" type="text">
+							<option>--</option>
+							<option value="2019">19</option>
+							<option value="2020">20</option>
+							<option value="2021">21</option>
+							<option value="2022">22</option>
+							<option value="2023">23</option>
+							<option value="2024">24</option>
+							<option value="2025">25</option>
+							<option value="2026">26</option>
+							<option value="2027">27</option>
+							<option value="2028">28</option>
+							<option value="2029">29</option>
+						</select>
+						<i class="fas fa-chevron-down"></i>
+						<span>年</span>
+					</div>
+				</div>
+			</div>
+			<div class="form__content top__margin">
+				<label>セキュリティーコード</label>
+				<span class="require__form">必須</span>
+				<%= text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc" %>
+				<div class="single__code">
+					<div class="single__code__text"></div>
+					<span class="form__question">？</span>
+					<span>カードの裏面の番号とは？</span>
+				</div>
+			</div>
+			<div id="card_token"></div>
+			<%= submit_tag "追加する", id: "token_submit", class: "top__margin" %>
+		</div>
+		<% end %>
+	</section>
+</div>

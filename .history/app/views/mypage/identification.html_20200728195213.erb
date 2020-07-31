@@ -1,0 +1,79 @@
+<div class="mypage-main-container">
+	<%= render 'sell/header' %>
+	<% breadcrumb :mypage_identification %>
+	<%= render 'mypage/bread-crumbs' %>
+	<main class="mypage-container clearfix">
+		<%= render 'mypage/side-bar' %>
+		<div class="indentification-content">
+			<section class="indentification-content__mypage">
+				<h2 class="indentification-content__head">""</h2>
+				<%= form_with model: @user, local: true, class: 'indentification-content__form' do |f| %>
+				<div>
+					<p class="indentification-content__info">
+						""
+						<br />
+						""
+					</p>
+					<p class="indentification-content__textlink">
+						<%= link_to '', '' %>
+						<i class="fas fa-chevron-right"></i>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '' %>
+					<p>
+						<%= current_user.full_name %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '' %>
+					<p>
+						<%= current_user.full_name_kana %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '', class: 'indentification-content__birthday' %>
+					<p>
+						<%= current_user.birthday %>
+					</p>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '', class: 'indentification-content__zipcode' %>
+					<span class="indentification-content__arbitrary">""</span>
+					<%= f.text_field :zip_code1, { class: 'indentification-content__default', placeholder: '', value: "#{ current_user.zip_code1 }" } %>
+				</div>
+				<div class="indentification-content__group">
+					<%= f.label '', class: 'indentification-content__prefecture' %>
+					<span class="indentification-content__arbitrary">""</span>
+					<div class="indentification-content__select">
+						<i class="fas fa-chevron-down"></i>
+						<%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '--', selected: current_user.prefecture_id %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">""</span>
+						<%= f.text_field :city, { class: 'indentification-content__default', placeholder: '', value: "#{ current_user.city }" } %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">""</span>
+						<%= f.text_field :address1, { class: 'indentification-content__default', placeholder: '', value: "#{ current_user.address1 }" } %>
+					</div>
+					<div class="indentification-content__group">
+						<%= f.label '', class: 'indentification-content__zipcode' %>
+						<span class="indentification-content__arbitrary">""</span>
+						<%= f.text_field :address2, { class: 'indentification-content__default', placeholder: '', value: "#{ current_user.address2 }" } %>
+						<%= f.submit '', { class: 'indentification-content__button' } %>
+					</div>
+					<p class="indentification-content__textlink" id="textinfo">
+						<%= link_to '', '' %>
+						<i class="fas fa-chevron-right"></i>
+					</p>
+				</div>
+				<% end %>
+			</section>
+		</div>
+		<%= render 'sell/sellbutton' %>
+	</main>
+	<%= render 'sell/footer' %>
+</div>
